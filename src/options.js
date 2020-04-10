@@ -117,6 +117,7 @@ export default {
     twitter: {
       name: 'twitter',
       url: '/auth/twitter',
+      request_token_url: '/auth/request-token',
       authorizationEndpoint: 'https://api.twitter.com/oauth/authenticate',
       redirectUri: getRedirectUri(),
       oauthType: '1.0',
@@ -164,6 +165,7 @@ export default {
     oauth1: {
       name: null,
       url: '/auth/oauth1',
+      request_token_url: '/auth/oauth1',
       authorizationEndpoint: null,
       redirectUri: getRedirectUri(),
       oauthType: '1.0',

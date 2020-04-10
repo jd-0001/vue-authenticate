@@ -649,6 +649,7 @@ var defaultOptions = {
     twitter: {
       name: 'twitter',
       url: '/auth/twitter',
+      request_token_url: '/auth/request-token',
       authorizationEndpoint: 'https://api.twitter.com/oauth/authenticate',
       redirectUri: getRedirectUri(),
       oauthType: '1.0',
@@ -696,6 +697,7 @@ var defaultOptions = {
     oauth1: {
       name: null,
       url: '/auth/oauth1',
+      request_token_url: '/auth/oauth1',
       authorizationEndpoint: null,
       redirectUri: getRedirectUri(),
       oauthType: '1.0',
@@ -978,7 +980,7 @@ var OAuth = function OAuth($http, storage, providerConfig, options) {
 };
 
 /**
- * Initialize OAuth1 process 
+ * Initialize OAuth1 process
  * @param{Object} userData User data
  * @return {Promise}
  */
@@ -1008,9 +1010,9 @@ OAuth.prototype.getRequestToken = function getRequestToken () {
   requestOptions[this.options.requestDataKey] = objectExtend({}, this.providerConfig);
   requestOptions.withCredentials = this.options.withCredentials;
   if (this.options.baseUrl) {
-    requestOptions.url = joinUrl(this.options.baseUrl, this.providerConfig.url);
+    requestOptions.url = joinUrl(this.options.baseUrl, this.providerConfig.request_token_url);
   } else {
-    requestOptions.url = this.providerConfig.url;
+    requestOptions.url = this.providerConfig.request_token_url;
   }
 
   return this.$http(requestOptions)

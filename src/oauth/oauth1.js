@@ -26,7 +26,7 @@ export default class OAuth {
   }
 
   /**
-   * Initialize OAuth1 process 
+   * Initialize OAuth1 process
    * @param  {Object} userData User data
    * @return {Promise}
    */
@@ -54,9 +54,9 @@ export default class OAuth {
     requestOptions[this.options.requestDataKey] = objectExtend({}, this.providerConfig)
     requestOptions.withCredentials = this.options.withCredentials
     if (this.options.baseUrl) {
-      requestOptions.url = joinUrl(this.options.baseUrl, this.providerConfig.url)
+      requestOptions.url = joinUrl(this.options.baseUrl, this.providerConfig.request_token_url)
     } else {
-      requestOptions.url = this.providerConfig.url
+      requestOptions.url = this.providerConfig.request_token_url
     }
 
     return this.$http(requestOptions)
